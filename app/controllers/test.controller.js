@@ -7,7 +7,7 @@ exports.create = (req, res) => {
     // Validate request
     if (!req.body.title) {
       res.status(400).send({
-        message: "Content can not be empty!"
+        message: "TEST DE CONTENU"
       });
       return;
     }
@@ -16,10 +16,10 @@ exports.create = (req, res) => {
     const test = {
       title: req.body.title,
       description: req.body.description,
-      published: req.body.published ? req.body.published : false
+      // published: req.body.published ? req.body.published : false
     };
   
-    // Save Test in the database
+    // save test
     Test.create(test)
       .then(data => {
         res.send(data);
@@ -27,12 +27,12 @@ exports.create = (req, res) => {
       .catch(err => {
         res.status(500).send({
           message:
-            err.message || "Some error occurred while creating the Test."
+            err.message || "errorkatsanscatnotefonde"
         });
       });
   };
 
-// Retrieve all Test from the database.
+// find all tests in the db
 exports.findAll = (req, res) => {
     const title = req.query.title;
     var condition = title ? { title: { [Op.like]: `%${title}%` } } : null;
@@ -44,12 +44,12 @@ exports.findAll = (req, res) => {
       .catch(err => {
         res.status(500).send({
           message:
-            err.message || "Some error occurred while retrieving tests."
+            err.message || "errorkatsanscatnotefonde"
         });
       });
   };
 
-// Find a single Test with an id
+//find one test by id
 exports.findOne = (req, res) => {
     const id = req.params.id;
   
@@ -64,7 +64,7 @@ exports.findOne = (req, res) => {
       });
   };
 
-// Update a Test by the id in the request
+// edit a test already exist
 exports.update = (req, res) => {
     const id = req.params.id;
   
@@ -88,7 +88,7 @@ exports.update = (req, res) => {
         });
       });
   };
-
+//delete one by id
   exports.delete = (req, res) => {
     const id = req.params.id;
   
